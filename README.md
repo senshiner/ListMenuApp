@@ -21,16 +21,24 @@ javac -d bin src/listmenu/*.java
 ```bash
 java -cp bin listmenu.ListMenuApp
 ```
+#### 🧰 Run via NetBeans:
+    1. Buat project Java baru (Java with Ant).
+    2. Buat package listmenu lalu salin semua file dari src/listmenu/.
+    3. Letakkan folder img/ di luar src/ (sejajar dengan build.xml).
+    4. Jalankan file ListMenuApp.java.
+    
 ## ➕ Add New Panel
 
-1. Tambahkan file panel baru di `src/listmenu/`, misalnya `TestPanel.java`
+1. Tambahkan file panel baru di `src/listmenu/`, misalnya `CustomPanel.java`
 2. Buka `ListMenuApp.java`, lalu:
-   - Di method `initializeMenuPanel()`, tambahkan:
+   - Di method `ListMenuApp()`, tambahkan:
      ```java
-     projectComboBox.addItem("Test");
+      projectSelector = new JComboBox<>(new String[]{
+      "Line", "Kurva", "Grafik",...,"CustomPanel"});
      ```
-   - Di method `initializeProjectPanel()`, tambahkan:
+   - Di method `updateProjectPanel()`, tambahkan:
      ```java
-     cardPanel.add(new TestPanel(), "Test");
+      else if ("CustomPanel".equals(selected)) {
+      mainPanel.add(new CustomPanel(frameColor, fillColor), BorderLayout.CENTER);}
      ```
 3. Compile dan jalankan ulang aplikasi.
