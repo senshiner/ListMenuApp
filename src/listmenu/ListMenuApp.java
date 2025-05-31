@@ -24,7 +24,7 @@ public class ListMenuApp extends JFrame {
         JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         topPanel.add(new JLabel("Menu:"));
 
-        projectSelector = new JComboBox<>(new String[]{"Grafik", "Kurva", "XOR", "PieChart"});
+        projectSelector = new JComboBox<>(new String[]{"Grafik", "Kurva", "XOR", "PieChart", "Clipping"});
         topPanel.add(projectSelector);
 
         warnaFrameBtn = new JButton("Warna Frame");
@@ -69,6 +69,8 @@ public class ListMenuApp extends JFrame {
             mainPanel.add(new XORDrawingPanel(frameColor, fillColor), BorderLayout.CENTER);
         } else if ("PieChart".equals(selected)) {
             mainPanel.add(new PieChartPanel(), BorderLayout.CENTER);
+        } else if ("Clipping".equals(selected)) {
+            mainPanel.add(new ClippingPanel(frameColor, fillColor), BorderLayout.CENTER);
         }
         mainPanel.revalidate();
         mainPanel.repaint();
