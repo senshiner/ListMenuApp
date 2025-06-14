@@ -57,7 +57,7 @@ public class RadarChartPanel extends JPanel {
             g2.drawLine(centerX, centerY, (int) x, (int) y);
         }
 
-        // Bangun radar path
+        // Radar path
         Path2D radarPath = new Path2D.Double();
         for (int i = 0; i < numAxes; i++) {
             double valueRatio = (double) data[i] / maxData;
@@ -69,7 +69,7 @@ public class RadarChartPanel extends JPanel {
         }
         radarPath.closePath();
 
-        // Isi radar dengan fillColor
+        // Radar dengan fillColor
         g2.setColor(new Color(fillColor.getRed(), fillColor.getGreen(), fillColor.getBlue(), 100));
         g2.fill(radarPath);
 

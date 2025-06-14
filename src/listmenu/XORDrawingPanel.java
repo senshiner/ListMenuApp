@@ -21,11 +21,11 @@ public class XORDrawingPanel extends JPanel {
         // Aktifkan XOR mode
         g2d.setXORMode(Color.WHITE); // Warna XOR dasar
 
-        // Persegi dengan warna fillColor
+        // Persegi
         g2d.setColor(fillColor);
         g2d.fillRect(50, 50, 200, 200);
 
-        // Oval dengan warna frameColor
+        // Oval
         g2d.setColor(frameColor);
         g2d.fillOval(100, 100, 200, 200);
 

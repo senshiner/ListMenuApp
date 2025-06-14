@@ -11,7 +11,7 @@ public class KurvaPanel extends JPanel {
     private final int[] y1 = {-15, -12, -2, 0, 12, 20};
 
     // Titik kontrol untuk kurva Bézier Custom
-    private final int[] x2 = {60, 160, 260, 360};
+    private final int[] x2 = {-40, 60, 160, 260};
     private final int[] y2 = {300, 100, 500, 300};
 
     private Color frameColor;
@@ -28,15 +28,15 @@ public class KurvaPanel extends JPanel {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
-        // Aktifkan anti-aliasing
+        // anti-aliasing
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        // Simpan transformasi awal
+        // transformasi awal
         AffineTransform original = g2.getTransform();
 
-        // --- Kurva Bézier GeneralPath (kiri) ---
-        g2.translate(100, 200); // geser origin ke posisi awal kiri
-        g2.scale(2, 2);         // perbesar agar terlihat jelas
+        // --- Kurva Bézier GeneralPath
+        g2.translate(100, 200);
+        g2.scale(2, 2);
 
         // Titik kontrol
         g2.setColor(Color.RED);
@@ -53,7 +53,7 @@ public class KurvaPanel extends JPanel {
         }
         g2.draw(controlPolygon);
 
-        // Kurva Bézier utama
+        // Kurva Bézier
         g2.setColor(Color.BLUE);
         GeneralPath bezierCurve = new GeneralPath();
         bezierCurve.moveTo(x1[0], y1[0]);
@@ -71,10 +71,10 @@ public class KurvaPanel extends JPanel {
 
         // Label bawah
         g2.setColor(Color.BLACK);
-        g2.drawString("Kurva Bézier", 160, 240);
+        g2.drawString("Kurva Bézier", 40, 80);
 
-        // --- Kurva Bézier Custom (kanan) ---
-        g2.translate(400, 0); // geser ke kanan
+        // --- Kurva Bézier Custom
+        g2.translate(400, 0);
         g2.setColor(Color.GRAY);
         for (int i = 0; i < x2.length - 1; i++) {
             g2.drawLine(x2[i], y2[i], x2[i + 1], y2[i + 1]);
@@ -86,7 +86,7 @@ public class KurvaPanel extends JPanel {
             g2.fillOval(x2[i] - 4, y2[i] - 4, 8, 8);
         }
 
-        // Kurva Bézier Custom (manual)
+        // Kurva Bézier Custom
         g2.setColor(frameColor);
         GeneralPath curve = new GeneralPath();
         curve.moveTo(x2[0], y2[0]);
@@ -104,9 +104,9 @@ public class KurvaPanel extends JPanel {
 
         // Label bawah
         g2.setColor(Color.BLACK);
-        g2.drawString("Kurva Bézier Custom", 200, 320);
+        g2.drawString("Kurva Bézier Custom", 80, 80);
 
-        // Reset transformasi lagi jika diperlukan
+        // Reset transformasi jika diperlukan
         g2.setTransform(original);
     }
 

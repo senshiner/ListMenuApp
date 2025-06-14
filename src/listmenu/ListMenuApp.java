@@ -42,18 +42,18 @@ public class ListMenuApp extends JFrame {
         warnaFrameBtn.addActionListener(e -> {
             Color c = JColorChooser.showDialog(this, "Pilih Warna Frame", frameColor);
             if (c != null) frameColor = c;
-            updateProjectPanel(); // refresh panel
+            updateProjectPanel();
         });
 
         warnaFillBtn.addActionListener(e -> {
             Color c = JColorChooser.showDialog(this, "Pilih Warna Fill", fillColor);
             if (c != null) fillColor = c;
-            updateProjectPanel(); // refresh panel
+            updateProjectPanel();
         });
 
         projectSelector.addActionListener(e -> updateProjectPanel());
 
-        updateProjectPanel(); // tampilkan project default
+        updateProjectPanel(); // project default
 
         setVisible(true);
     }

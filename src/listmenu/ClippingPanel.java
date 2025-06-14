@@ -19,7 +19,7 @@ public class ClippingPanel extends JPanel {
         setBackground(Color.WHITE);
 
         try {
-            image = ImageIO.read(new File("img/casto.jpg")); // letakkan di luar src/
+            image = ImageIO.read(new File("img/casto.jpg"));
         } catch (IOException e) {
             e.printStackTrace();
             image = null;
@@ -33,6 +33,7 @@ public class ClippingPanel extends JPanel {
 
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(frameColor);
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); // smoother
 
         int size = 200;
         int gap = 20;
@@ -42,31 +43,46 @@ public class ClippingPanel extends JPanel {
         // Gambar asli
         g2d.drawImage(image, startX, startY, size, size, this);
         g2d.drawRect(startX, startY, size, size);
+        g2d.setColor(Color.BLACK);
+        g2d.drawString("Original", startX + size / 2 - 25, startY + size + 15);
 
         // Clip segitiga
-        Shape triangle = new Polygon(
-            new int[]{startX + size + gap, startX + size + gap + size / 2, startX + size + gap + size},
-            new int[]{startY + size, startY, startY + size},
-            3
-        );
+        int triX = startX + size + gap;
+        int triY = startY;
+        int[] xPoints = {triX, triX + size / 2, triX + size};
+        int[] yPoints = {triY + size, triY, triY + size};
+        Shape triangle = new Polygon(xPoints, yPoints, xPoints.length);
         g2d.setClip(triangle);
-        g2d.drawImage(image, startX + size + gap, startY, size, size, this);
+        g2d.drawImage(image, triX, triY, size, size, this);
         g2d.setClip(null);
+        g2d.setColor(frameColor);
         g2d.draw(triangle);
+        g2d.setColor(Color.BLACK);
+        g2d.drawString("Segitiga", triX + size / 2 - 35, triY + size + 15);
 
         // Clip lingkaran
-        Shape circle = new Ellipse2D.Double(startX, startY + size + gap, size, size);
+        int cirX = startX;
+        int cirY = startY + size + gap;
+        Shape circle = new Ellipse2D.Double(cirX, cirY, size, size);
         g2d.setClip(circle);
-        g2d.drawImage(image, startX, startY + size + gap, size, size, this);
+        g2d.drawImage(image, cirX, cirY, size, size, this);
         g2d.setClip(null);
+        g2d.setColor(frameColor);
         g2d.draw(circle);
+        g2d.setColor(Color.BLACK);
+        g2d.drawString("Lingkaran", cirX + size / 2 - 30, cirY + size + 15);
 
         // Clip love shape
-        Shape heart = createHeartShape(startX + size + gap, startY + size + gap, size, size);
+        int heartX = startX + size + gap;
+        int heartY = startY + size + gap;
+        Shape heart = createHeartShape(heartX, heartY, size, size);
         g2d.setClip(heart);
-        g2d.drawImage(image, startX + size + gap, startY + size + gap, size, size, this);
+        g2d.drawImage(image, heartX, heartY, size, size, this);
         g2d.setClip(null);
+        g2d.setColor(frameColor);
         g2d.draw(heart);
+        g2d.setColor(Color.BLACK);
+        g2d.drawString("Love", heartX + size / 2 - 30, heartY + size + 15);
     }
 
     private Shape createHeartShape(int x, int y, int w, int h) {
