@@ -24,28 +24,27 @@ public class FontStylePanel extends JPanel {
         int y = 60;
         int spacing = 40;
 
-        // Poppins Regular
-        g2.setFont(new Font("Poppins", Font.PLAIN, 24));
+        // SansSerif Plain
+        g2.setFont(new Font("SansSerif", Font.PLAIN, 24));
         g2.setColor(frameColor);
-        g2.drawString("Poppins Plain", x, y);
+        g2.drawString("SansSerif Plain", x, y);
 
-        // Poppins Bold
-        g2.setFont(new Font("Poppins", Font.BOLD, 24));
-        g2.drawString("Poppins Bold", x, y + spacing);
+        // SansSerif Bold
+        g2.setFont(new Font("SansSerif", Font.BOLD, 24));
+        g2.drawString("SansSerif Bold", x, y + spacing);
 
-        // Poppins Italic
-        g2.setFont(new Font("Poppins", Font.ITALIC, 24));
-        g2.drawString("Poppins Italic", x, y + 2 * spacing);
+        // SansSerif Italic
+        g2.setFont(new Font("SansSerif", Font.ITALIC, 24));
+        g2.drawString("SansSerif Italic", x, y + 2 * spacing);
 
-        // Poppins Bold Italic
-        g2.setFont(new Font("Poppins", Font.BOLD | Font.ITALIC, 24));
+        // SansSerif Bold Italic
+        g2.setFont(new Font("SansSerif", Font.BOLD | Font.ITALIC, 24));
         g2.setColor(fillColor);
-        g2.drawString("Poppins Bold Italic", x, y + 3 * spacing);
+        g2.drawString("SansSerif Bold Italic", x, y + 3 * spacing);
 
-        // JetBrains Mono (Monospaced Style)
-        g2.setFont(new Font("JetBrains Mono", Font.PLAIN, 24));
+        // SansSerif Monospaced-like style (gunakan tetap SansSerif)
+        g2.setFont(new Font("SansSerif", Font.PLAIN, 24));
         g2.setColor(frameColor);
-        g2.drawString("Monospaced Style", x, y + 4 * spacing);
+        g2.drawString("SansSerif Style", x, y + 4 * spacing);
     }
 }
-
