@@ -19,7 +19,7 @@ public class ClippingPanel extends JPanel {
         setBackground(Color.WHITE);
 
         try {
-            image = ImageIO.read(new File("img/isal.jpg"));
+            image = ImageIO.read(new File("img/tamir.jpg"));
         } catch (IOException e) {
             e.printStackTrace();
             image = null;
@@ -60,26 +60,25 @@ public class ClippingPanel extends JPanel {
         g2d.setColor(Color.BLACK);
         g2d.drawString("Lingkaran", x2 + size / 2 - 35, y2 + size + 15);
 
-        // === DIAMOND ===
+        // === SEGITIGA ===
         int x3 = x2 + size + gap;
         int y3 = y1;
-        Shape diamond = createDiamondShape(x3, y3, size, size);
-        g2d.setClip(diamond);
+        Shape triangle = createTriangleShape(x3, y3, size, size);
+        g2d.setClip(triangle);
         g2d.drawImage(image, x3, y3, size, size, this);
         g2d.setClip(null);
         g2d.setColor(frameColor);
-        g2d.draw(diamond);
+        g2d.draw(triangle);
         g2d.setColor(Color.BLACK);
-        g2d.drawString("Belah Ketupat", x3 + size / 2 - 45, y3 + size + 15);
+        g2d.drawString("Segitiga", x3 + size / 2 - 30, y3 + size + 15);
     }
 
-    private Shape createDiamondShape(int x, int y, int w, int h) {
-        GeneralPath diamond = new GeneralPath();
-        diamond.moveTo(x + w / 2.0, y);               
-        diamond.lineTo(x + w, y + h / 2.0);           
-        diamond.lineTo(x + w / 2.0, y + h);           
-        diamond.lineTo(x, y + h / 2.0);               
-        diamond.closePath();
-        return diamond;
+    private Shape createTriangleShape(int x, int y, int w, int h) {
+        GeneralPath triangle = new GeneralPath();
+        triangle.moveTo(x + w / 2.0, y);
+        triangle.lineTo(x + w, y + h);             
+        triangle.lineTo(x, y + h);                  
+        triangle.closePath();
+        return triangle;
     }
 }
