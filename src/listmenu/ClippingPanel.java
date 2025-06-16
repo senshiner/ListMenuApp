@@ -19,7 +19,7 @@ public class ClippingPanel extends JPanel {
         setBackground(Color.WHITE);
 
         try {
-            image = ImageIO.read(new File("img/furina.jpg"));
+            image = ImageIO.read(new File("img/custom.jpg"));
         } catch (IOException e) {
             e.printStackTrace();
             image = null;
@@ -48,17 +48,17 @@ public class ClippingPanel extends JPanel {
         g2d.setColor(Color.BLACK);
         g2d.drawString("Original", x1 + size / 2 - 30, y1 + size + 15);
 
-        // === BULAN SABIT ===
+        // === BINTANG ===
         int x2 = x1 + size + gap;
         int y2 = y1;
-        Shape crescent = createCrescentShape(x2, y2, size);
-        g2d.setClip(crescent);
+        Shape star = createStarShape(x2 + size / 2, y2 + size / 2, size / 2, size / 4, 5);
+        g2d.setClip(star);
         g2d.drawImage(image, x2, y2, size, size, this);
         g2d.setClip(null);
         g2d.setColor(frameColor);
-        g2d.draw(crescent);
+        g2d.draw(star);
         g2d.setColor(Color.BLACK);
-        g2d.drawString("Bulan Sabit", x2 + size / 2 - 40, y2 + size + 15);
+        g2d.drawString("Bintang", x2 + size / 2 - 30, y2 + size + 15);
 
         // === LOVE ===
         int x3 = x2 + size + gap;
@@ -82,11 +82,20 @@ public class ClippingPanel extends JPanel {
         return heart;
     }
 
-    private Shape createCrescentShape(int x, int y, int size) {
-        Ellipse2D outer = new Ellipse2D.Double(x, y, size, size);
-        Ellipse2D inner = new Ellipse2D.Double(x + size * 0.25, y, size, size);
-        Area crescent = new Area(outer);
-        crescent.subtract(new Area(inner));
-        return crescent;
+    private Shape createStarShape(int centerX, int centerY, int outerRadius, int innerRadius, int numPoints) {
+        GeneralPath path = new GeneralPath();
+        double angleStep = Math.PI / numPoints;
+
+        for (int i = 0; i < numPoints * 2; i++) {
+            double angle = i * angleStep - Math.PI / 2;
+            int radius = (i % 2 == 0) ? outerRadius : innerRadius;
+            double x = centerX + Math.cos(angle) * radius;
+            double y = centerY + Math.sin(angle) * radius;
+            if (i == 0) path.moveTo(x, y);
+            else path.lineTo(x, y);
+        }
+
+        path.closePath();
+        return path;
     }
 }

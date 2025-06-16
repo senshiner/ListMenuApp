@@ -11,10 +11,10 @@ public class ListMenuApp extends JFrame {
     private JPanel mainPanel;
 
     public static Color frameColor = Color.BLACK;
-    public static Color fillColor = new Color(105, 138, 232);
+    public static Color fillColor = new Color(255, 179, 0);
 
     public ListMenuApp() {
-        setTitle("List Menu - M Rifa'i Ridho (241011402130)");
+        setTitle("List Menu - Ibnu Syuhada (241011401260)");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(700, 500);
         setLocationRelativeTo(null);
@@ -24,7 +24,7 @@ public class ListMenuApp extends JFrame {
         JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         topPanel.add(new JLabel("Menu:"));
 
-        projectSelector = new JComboBox<>(new String[]{"Grafik", "Kurva", "XOR", "BarChart", "Clipping", "FontStyle"});
+        projectSelector = new JComboBox<>(new String[]{"Grafik", "Kurva", "XOR", "DonutChart", "Clipping", "FontStyle"});
         topPanel.add(projectSelector);
 
         warnaFrameBtn = new JButton("Warna Frame");
@@ -67,8 +67,8 @@ public class ListMenuApp extends JFrame {
             mainPanel.add(new KurvaPanel(frameColor, fillColor), BorderLayout.CENTER);
         } else if ("XOR".equals(selected)) {
             mainPanel.add(new XORDrawingPanel(frameColor, fillColor), BorderLayout.CENTER);
-        } else if ("BarChart".equals(selected)) {
-            mainPanel.add(new BarChartPanel(frameColor, fillColor), BorderLayout.CENTER);
+        } else if ("DonutChart".equals(selected)) {
+            mainPanel.add(new DonutChartPanel(frameColor, fillColor), BorderLayout.CENTER);
         } else if ("Clipping".equals(selected)) {
             mainPanel.add(new ClippingPanel(frameColor, fillColor), BorderLayout.CENTER);
         } else if ("FontStyle".equals(selected)) {

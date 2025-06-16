@@ -11,8 +11,8 @@ public class KurvaPanel extends JPanel {
     private final int[] y1 = {-15, -12, -2, 0, 12, 20};
 
     // Titik kontrol untuk kurva Bézier Custom
-    private final int[] x2 = {100, 200, 100, 0, 100};
-    private final int[] y2 = {100, 200, 300, 200, 100};
+    private final int[] x2 = {50, 70, 120, 150};
+    private final int[] y2 = {200, 100, 300, 200};
 
     private Color frameColor;
     private Color fillColor;
@@ -67,21 +67,25 @@ public class KurvaPanel extends JPanel {
 
         // --- Kurva Bézier Custom
         g2.translate(400, 0);
+
+        // Garis bantu antara titik-titik kontrol
         g2.setColor(Color.GRAY);
         for (int i = 0; i < x2.length - 1; i++) {
             g2.drawLine(x2[i], y2[i], x2[i + 1], y2[i + 1]);
         }
 
+        // Gambar titik-titik kontrol
         g2.setColor(fillColor);
         for (int i = 0; i < x2.length; i++) {
             g2.fillOval(x2[i] - 4, y2[i] - 4, 8, 8);
         }
 
+        // Gambar kurva Bézier
         g2.setColor(frameColor);
         GeneralPath curve = new GeneralPath();
         curve.moveTo(x2[0], y2[0]);
 
-        for (double t = 0; t <= 1.0; t += 0.01) {
+        for (double t = 0.0; t <= 1.0; t += 0.01) {
             double px = 0, py = 0;
             int n = x2.length - 1;
             for (int i = 0; i <= n; i++) {
@@ -95,6 +99,7 @@ public class KurvaPanel extends JPanel {
 
         g2.setColor(Color.BLACK);
         g2.drawString("Kurva Bézier Custom", 40, 80);
+
         g2.setTransform(original);
     }
 
