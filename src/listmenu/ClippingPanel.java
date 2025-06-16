@@ -19,7 +19,7 @@ public class ClippingPanel extends JPanel {
         setBackground(Color.WHITE);
 
         try {
-            image = ImageIO.read(new File("img/isal.jpg"));
+            image = ImageIO.read(new File("img/dika.jpg"));
         } catch (IOException e) {
             e.printStackTrace();
             image = null;
@@ -60,26 +60,37 @@ public class ClippingPanel extends JPanel {
         g2d.setColor(Color.BLACK);
         g2d.drawString("Lingkaran", x2 + size / 2 - 35, y2 + size + 15);
 
-        // === DIAMOND ===
+        // === BINTANG ===
         int x3 = x2 + size + gap;
         int y3 = y1;
-        Shape diamond = createDiamondShape(x3, y3, size, size);
-        g2d.setClip(diamond);
+        Shape star = createStarShape(x3 + size / 2, y3 + size / 2, size / 2.0, size / 4.0, 5);
+        g2d.setClip(star);
         g2d.drawImage(image, x3, y3, size, size, this);
         g2d.setClip(null);
         g2d.setColor(frameColor);
-        g2d.draw(diamond);
+        g2d.draw(star);
         g2d.setColor(Color.BLACK);
-        g2d.drawString("Belah Ketupat", x3 + size / 2 - 45, y3 + size + 15);
+        g2d.drawString("Bintang", x3 + size / 2 - 30, y3 + size + 15);
     }
 
-    private Shape createDiamondShape(int x, int y, int w, int h) {
-        GeneralPath diamond = new GeneralPath();
-        diamond.moveTo(x + w / 2.0, y);               
-        diamond.lineTo(x + w, y + h / 2.0);           
-        diamond.lineTo(x + w / 2.0, y + h);           
-        diamond.lineTo(x, y + h / 2.0);               
-        diamond.closePath();
-        return diamond;
+    private Shape createStarShape(double centerX, double centerY, double outerRadius, double innerRadius, int numPoints) {
+        GeneralPath path = new GeneralPath();
+        double angle = Math.PI / numPoints;
+
+        for (int i = 0; i < 2 * numPoints; i++) {
+            double r = (i % 2 == 0) ? outerRadius : innerRadius;
+            double theta = i * angle - Math.PI / 2;
+            double x = centerX + r * Math.cos(theta);
+            double y = centerY + r * Math.sin(theta);
+
+            if (i == 0) {
+                path.moveTo(x, y);
+            } else {
+                path.lineTo(x, y);
+            }
+        }
+
+        path.closePath();
+        return path;
     }
 }
