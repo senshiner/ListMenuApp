@@ -9,7 +9,7 @@ public class KurvaPanel extends JPanel {
     private final int[] x1 = {-45, -40, -32, -24, 10, 24};
     private final int[] y1 = {-15, -12, -2, 0, 12, 20};
 
-    // Titik kontrol untuk kurva Bézier kustom
+    // Titik kontrol kurva Bézier kustom
     private final int[] x2 = {0, 100, 200};
     private final int[] y2 = {200, 100, 200};
 
