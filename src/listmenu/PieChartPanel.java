@@ -3,7 +3,7 @@ package listmenu;
 import javax.swing.*;
 import java.awt.*;
 
-public class DonutChartPanel extends JPanel {
+public class PieChartPanel extends JPanel {
     private final int[] data = {30, 51, 100, 80, 84, 98, 73, 109, 36, 36};
     private final String[] labels = {
         "N01", "N02", "N03", "N04", "N05",
@@ -13,7 +13,7 @@ public class DonutChartPanel extends JPanel {
     private final Color frameColor;
     private final Color fillColor;
 
-    public DonutChartPanel(Color frameColor, Color fillColor) {
+    public PieChartPanel(Color frameColor, Color fillColor) {
         this.frameColor = frameColor;
         this.fillColor = fillColor;
         setBackground(Color.WHITE);
@@ -29,10 +29,9 @@ public class DonutChartPanel extends JPanel {
         int panelWidth = getWidth();
         int panelHeight = getHeight();
 
-        int outerDiameter = Math.min(panelWidth, panelHeight) - 80;
-        int centerX = (panelWidth - outerDiameter) / 2;
-        int centerY = (panelHeight - outerDiameter) / 2;
-        int innerDiameter = (int) (outerDiameter * 0.5);
+        int diameter = Math.min(panelWidth, panelHeight) - 80;
+        int centerX = (panelWidth - diameter) / 2;
+        int centerY = (panelHeight - diameter) / 2;
 
         int total = 0;
         for (int value : data) {
@@ -53,22 +52,16 @@ public class DonutChartPanel extends JPanel {
             );
 
             g2.setColor(sliceColor);
-            g2.fillArc(centerX, centerY, outerDiameter, outerDiameter, (int) startAngle, (int) angle);
+            g2.fillArc(centerX, centerY, diameter, diameter, (int) startAngle, (int) angle);
 
             g2.setColor(frameColor);
-            g2.drawArc(centerX, centerY, outerDiameter, outerDiameter, (int) startAngle, (int) angle);
+            g2.drawArc(centerX, centerY, diameter, diameter, (int) startAngle, (int) angle);
 
             startAngle += angle;
         }
 
-        // Lubang tengah (membuat efek donut)
-        g2.setColor(getBackground());
-        int holeX = centerX + (outerDiameter - innerDiameter) / 2;
-        int holeY = centerY + (outerDiameter - innerDiameter) / 2;
-        g2.fillOval(holeX, holeY, innerDiameter, innerDiameter);
-
         // Gambar legenda
-        int legendX = centerX + outerDiameter + 20;
+        int legendX = centerX + diameter + 20;
         int legendY = centerY;
         g2.setFont(new Font("SansSerif", Font.PLAIN, 12));
         for (int i = 0; i < data.length; i++) {
