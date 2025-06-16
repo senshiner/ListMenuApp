@@ -14,7 +14,7 @@ public class ListMenuApp extends JFrame {
     public static Color fillColor = new Color(105, 138, 232);
 
     public ListMenuApp() {
-        setTitle("List Menu - M Rifa'i Ridho (241011402130)");
+        setTitle("List Menu - Ziyad Maulana R (241011401917)");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(700, 500);
         setLocationRelativeTo(null);
